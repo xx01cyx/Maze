@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Maze</title>
+        <script src="./maze.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="maze.css">
+    </head>
+
+    <body onload="init()">
+        <nav class="navbar navbar-expand-lg" style="background-color: lightgray;">
+            <a class="navbar-brand" href="#" style="color: black;"><h3>Maze</h3></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <span class="navbar-text">
+                    Create a maze and auto-solve it.
+                </span>
+            </div>
+            <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom">
+                How to play
+            </button>
+        </nav>
+
+        <div class="container" style="padding-top: 10px;">
+            <div id="main" class="columns">
+                <div id="main" class="column">
+                    <div class="columns">
+                        <div id="content" class="column col-13 col-mx-auto col-text-center">
+                            <div class="columns">
+                                <div class="column col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="sltType">Type:</label>
+                                        </div>
+                                        <select class="custom-select form-control" id="sltType" onchange="onSltType()">
+                                            <option value="Maze1" selected>Maze1</option>
+                                            <option value="Maze2">Maze2</option>
+                                        </select>
+
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Columns:</span>
+                                        </div>
+                                        <input id="cols" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="90" value="90">
+                                        
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Rows:</span>
+                                        </div>
+                                        <input id="rows" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="70" value="70">
+                                        
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Density:</span>
+                                        </div>
+                                        <input id="density" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="60" value="60" disabled>
+
+                                        <span class="input-group-text" id="inputGroup-sizing-default">
+                                            <input type="checkbox" id="chkAnimated" name="maze">
+                                            &nbsp;Animated
+                                        </span>
+
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button id="btnCreateMaze" type="button" class="btn btn-secondary" onclick="onCreate()" style="width: 90px;">Create</button>
+                                            <button id="btnClear" type="button" class="btn btn-secondary" onclick="onClear()" style="width: 90px;" disabled>Clear</button>
+                                            <button id="btnAct" type="button" class="btn btn-secondary" onclick="changeStatus()" style="width: 90px;" disabled>Pause</button>
+                                            <button id="btnSkip" type="button" class="btn btn-secondary" onclick="onSkip()" style="width: 90px;" disabled>Skip</button>    
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="column col-6" style="float: left;">
+                                    <h5 id="text1">DFS Algorithm</h5>
+                                    <div id="maze1"></div>
+                                    <h5 id="executionTime1"></h5>
+                                </div>
+                                <div class="column col-6" style="float: left;">
+                                    <h5 id="text2">A* Algorithm</h5>
+                                    <div id="maze2"></div>
+                                    <h5 id="executionTime2"></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
