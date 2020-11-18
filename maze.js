@@ -6,8 +6,8 @@ var padding = 16, s, density=0.5, count=2;
 var t0, t1, t2;
 var interval1 = 0;
 var interval2 = 0;
-var flagA = false, flagB= false, flagErr = false, flagRet = false, flagCreate = false;
-var act = true, skip = false;
+var flagA = false, flagB= false, flagErr = false, flagRet = false;
+var act = true;
 
 function PriorityQueue()
 {
@@ -640,7 +640,6 @@ function createMaze1() {
     var neighbours = getNeighbours( 0, start[0].x, start[0].y, 1 ), l;
     if( neighbours.length < 1 ) {
         if( stacks[0].length < 1 ) {
-            flagCreate = true;
 
             for(var i = 0; i < count; i++) {
                 drawMaze(i); 
@@ -676,10 +675,9 @@ function createMaze1() {
         stacks[0].push( start[0] )
     }
 
-    if (!skip)
-        for(var i = 0; i < count; i++) {
-            drawMaze(i); 
-        }
+    for(var i = 0; i < count; i++) {
+        drawMaze(i); 
+    }
     
     requestAnimationFrame( createMaze1 );
 }

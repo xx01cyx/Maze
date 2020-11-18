@@ -5,10 +5,15 @@
         <title>Maze</title>
         <script src="./maze.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="maze.css">
     </head>
 
     <body onload="init()">
+
+        <!-- Navigation bar -->
         <nav class="navbar navbar-expand-lg" style="background-color: lightgray;">
             <a class="navbar-brand" href="#" style="color: black;"><h3>Maze</h3></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,11 +24,12 @@
                     Create a maze and auto-solve it.
                 </span>
             </div>
-            <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#gameGuide">
                 How to play
             </button>
         </nav>
 
+        <!-- Page content -->
         <div class="container" style="padding-top: 10px;">
             <div id="main" class="columns">
                 <div id="main" class="column">
@@ -56,7 +62,7 @@
                                         <input id="density" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="60" value="60" disabled>
 
                                         <span class="input-group-text" id="inputGroup-sizing-default">
-                                            <input type="checkbox" id="chkAnimated" name="maze">
+                                            <input type="checkbox" id="chkAnimated" name="maze" checked>
                                             &nbsp;Animated
                                         </span>
 
@@ -85,5 +91,85 @@
                 </div>
             </div>
         </div>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="gameGuide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Game Guide</h4>
+                </div>
+
+                <div class="modal-body">
+                    <br/>
+                    <p>
+                        &nbsp;&nbsp;Welcome to the maze game! Here, you can create a maze and get the computer solve it. 
+                    </p>
+                    <br/>
+
+                    <p><h5>Get Started:</h5></p>
+                    <p>
+                        &nbsp;&nbsp;Click <button type="button" class="btn btn-secondary" style="width: 90px;">Create</button> to create a maze. 
+                        The black blocks are walkable while the gray ones act as roadblocks. 
+                        Choose two black blocks in the maze as the start point and the end point, and then watch the computer solve the maze via various algorithms!  
+                    </p>
+                    <br/>
+
+                    <p><h5>Mazes:</h5></p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2"><p><h6>Maze1</h6></p></div>
+                            <div class="col-10"><p>Only moves in <b>horizontal</b> or <b>vertical</b> directions are allowed.</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2"><p><h6>Maze2</h6></p></div>
+                            <div class="col-10"><p>Moves in <b>horizontal</b>, <b>vertical</b> and <b>diagonal</b> directions are allowed.</p></div>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <p><h5>Customizations:</h5></p>
+                    <ul>
+                        <li><p>Change the maze type via Type.</p></li>
+                        <li><p>Adjust the size of the maze by setting the values of Columns and Rows.</p></li>
+                        <li><p>Check Animated if you want the maze to be created dynamically. Uncheck it if not.</p></li>
+                        <li><p>Alter the block density of Maze2 by setting the value of Density. Density altering function is not provided in Maze1.</p></li>
+                    </ul>
+                    <br/>
+
+                    <p><h5>Buttons:</h5></p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3 py-1"><button type="button" class="btn btn-secondary" style="width: 90px;">Create</button></div>
+                            <div class="col-9 py-2">Create the maze.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 py-1"><button type="button" class="btn btn-secondary" style="width: 90px;">Clear</button></div>
+                            <div class="col-9 py-2">Clear the path. </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 py-1"><button type="button" class="btn btn-secondary" style="width: 90px;">Pause</button></div>
+                            <div class="col-9 py-2">Pause when solving the maze.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 py-1"><button type="button" class="btn btn-secondary" style="width: 90px;">Skip</button></div>
+                            <div class="col-9 py-2">Skip ani-creating the maze. </div>
+                        </div>
+                        <br/>
+
+                        <p><h5>Notes:</h5></p>
+                        <ul>
+                            <li><p><button type="button" class="btn btn-secondary" style="width: 90px;" disabled>Skip</button> means the function is disabled.</p></li>
+                            <li><p>Clear is not allowed when the maze is being solved. If you want to clear the path when the computer is solving the maze, click <button type="button" class="btn btn-secondary" style="width: 90px;">Pause</button> first.</p></li>
+                            <li><p>The pause time will NOT be included in the calculation of execution time.</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
     </body>
+
+    <script>
+    </script>
 </html>
