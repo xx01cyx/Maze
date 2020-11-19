@@ -308,6 +308,7 @@ function solveMaze1Optimized(index) {
             document.getElementById("btnClear").removeAttribute("disabled");
             document.getElementById("btnAct").setAttribute("disabled", "disabled");
             document.getElementById("btnCreateMaze").removeAttribute("disabled");
+            document.getElementById("sltType").removeAttribute("disabled");
         }
         return;
     }
@@ -360,6 +361,7 @@ function solveMaze1AStar (index) {
             document.getElementById("btnClear").removeAttribute("disabled");
             document.getElementById("btnAct").setAttribute("disabled", "disabled");
             document.getElementById("btnCreateMaze").removeAttribute("disabled");
+            document.getElementById("sltType").removeAttribute("disabled");
         }
         return;
     }
@@ -436,6 +438,7 @@ function solveMaze2Optimized(index) {
                 document.getElementById("btnClear").removeAttribute("disabled");
                 document.getElementById("btnAct").setAttribute("disabled", "disabled");
                 document.getElementById("btnCreateMaze").removeAttribute("disabled");
+                document.getElementById("sltType").removeAttribute("disabled");
             }
             flagRet = true;
             return;
@@ -454,13 +457,18 @@ function solveMaze2Optimized(index) {
             start[index] = stacks[index].pop();
         }
     });
-    pms.catch((e) => { flagErr = true; });
+    pms.catch((e) => { flagErr = true; start = [{x:-1, y:-1}, {x:-1, y:-1}]; });
 
     if (flagErr || flagRet) {
+
         if (flagErr) 
             alert("Unsolvable maze!");
+            
         document.getElementById("btnClear").removeAttribute("disabled");
         document.getElementById("btnCreateMaze").removeAttribute("disabled");
+        document.getElementById("btnAct").setAttribute("disabled", "disabled");
+        document.getElementById("sltType").removeAttribute("disabled");
+
         return; 
     }
  
@@ -496,6 +504,7 @@ function solveMaze2AStar (index) {
             document.getElementById("btnClear").removeAttribute("disabled");
             document.getElementById("btnAct").setAttribute("disabled", "disabled");
             document.getElementById("btnCreateMaze").removeAttribute("disabled");
+            document.getElementById("sltType").removeAttribute("disabled");
         }
         return;
     }
@@ -519,12 +528,7 @@ function solveMaze2AStar (index) {
             mazes[index][cur.x][cur.y] = 2;
         }
     });
-    pms.catch((e) => { flagErr = true; });
-
-    if (flagErr) {
-        document.getElementById("btnClear").removeAttribute("disabled");
-        return; 
-    }
+    pms.catch((e) => { flagErr = true;  return; });
 
     drawMaze(index);
     
@@ -564,6 +568,7 @@ function getCursorPos( event ) {
         document.getElementById("btnCreateMaze").setAttribute("disabled", "disabled");
         document.getElementById("btnClear").setAttribute("disabled", "disabled");
         document.getElementById("btnAct").removeAttribute("disabled");
+        document.getElementById("sltType").setAttribute("disabled", "disabled");
 
         flagA = false;
         flagB = false;
@@ -912,6 +917,8 @@ function onSltType() {
     document.getElementById("executionTime1").innerHTML = "";
     document.getElementById("executionTime2").innerHTML = "";
     document.getElementById("btnClear").setAttribute("disabled", "disabled");
+    document.getElementById("btnAct").innerHTML = "Pause";
+    document.getElementById("btnAct").setAttribute("disabled", "disabled");
 
     if(document.getElementById("sltType").value == "Maze2") {
         document.getElementById("density").removeAttribute("disabled");
@@ -975,6 +982,8 @@ function changeStatus() {
         document.getElementById("btnAct").innerHTML = "Continue";
         document.getElementById("btnCreateMaze").removeAttribute("disabled");
         document.getElementById("btnClear").removeAttribute("disabled");
+        document.getElementById("sltType").removeAttribute("disabled");
+        
 
         act = false;
         
@@ -984,6 +993,7 @@ function changeStatus() {
         document.getElementById("btnAct").innerHTML = "Pause";
         document.getElementById("btnCreateMaze").setAttribute("disabled", "disabled");
         document.getElementById("btnClear").setAttribute("disabled", "disabled");
+        document.getElementById("sltType").setAttribute("disabled", "disabled");
 
         act = true;
 
